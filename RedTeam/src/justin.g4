@@ -46,4 +46,3 @@ assign_expr : id ':=' expr;
 read_stmt : READ ( id_list );
 write_stmt  : WRITE ( id_list );
 return_stmt  : RETURN expr ;
->>>>>>> 4cd30645fb7422d99a887245d059ea0810933abd
