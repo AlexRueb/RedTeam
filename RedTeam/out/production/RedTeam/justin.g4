@@ -11,4 +11,4 @@ IDENTIFIER : ([A-Z]|[a-z]);
 pgm_body :  'pgm_body'; //decl func_declarations;
 
 //decl : string_decl decl | var_decl decl | empty;
-
+PROGRAM : 'PROGRAM';
