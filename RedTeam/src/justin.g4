@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /* Define grammar called LITTLE */
 
 grammar justin;
