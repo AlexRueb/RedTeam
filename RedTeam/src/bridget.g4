@@ -12,5 +12,5 @@ FLOATLITERAL : [0-9]*.[0-9]*;
 STRINGLITERAL : '"'[.*!'|!"*]+'"';
 
 //Starts with "--" and lasts till the end of line
-COMMENT : ^--+[\S\s]+\n;
+COMMENT : [--][.*][\n];
 
