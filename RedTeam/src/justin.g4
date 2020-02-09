@@ -1,14 +1,26 @@
 /* Define grammar called LITTLE */
 
 grammar justin;
+KEYWORDS : ['PROGRAM', 'BEGIN', 'END', 'FUNCTION', 'WRITE', 'IF', 'ELSE', 'ENDIF', 'WHILE', 'ENDWHILE', 'CONTINUE', 'BREAK','RETURN', 'INT', 'VOID', 'STRING', 'FLOAT'];
+OPERATORS : [':=', '+', '-', '*', '/', '=', '!=', '<', '>', '(', ')', ';', ',', '<=', '>='];
+//integer number
+INTLITERAL : [0-9]+;
 
+//floating point number available in two different format
+FLOATLITERAL : [0-9]*.[0-9]*;
+
+//any sequence of characters except '"'
+STRINGLITERAL : '"'[.*!'|!"*]+'"';
+
+//Starts with "--" and lasts till the end of line
+COMMENT : [--][.*][\n];
 WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
-CAPS :[A-Z]+;
+
 
 /* Program */
 program : PROGRAM id BEGIN pgm_body END;
 id : IDENTIFIER;
-IDENTIFIER : ([A-Z]|[a-z])+([A-Z]|[a-z]|[0-9])*;
+
 pgm_body :  decl func_declarations;
 decl : string_decl decl | var_decl decl | ;
 
@@ -66,17 +78,5 @@ compop: '<' | '>' | '=' | '!=' | '<=' | '>=';
 
 /* While statements */
 while_stmt: WHILE '(' cond ')' decl stmt_list ENDWHILE;
-
-KEYWORDS : ['PROGRAM', 'BEGIN', 'END', 'FUNCTION', 'WRITE', 'IF', 'ELSE', 'ENDIF', 'WHILE', 'ENDWHILE', 'CONTINUE', 'BREAK','RETURN', 'INT', 'VOID', 'STRING', 'FLOAT'];
-OPERATORS : [':=', '+', '-', '*', '/', '=', '!=', '<', '>', '(', ')', ';', ',', '<=', '>='];
-//integer number
-INTLITERAL : [0-9]+;
-
-//floating point number available in two different format
-FLOATLITERAL : [0-9]*.[0-9]*;
-
-//any sequence of characters except '"'
-STRINGLITERAL : '"'[.*!'|!"*]+'"';
-
-//Starts with "--" and lasts till the end of line
-COMMENT : [--][.*][\n];
+IDENTIFIER : ([A-Z]|[a-z])+([A-Z]|[a-z]|[0-9])*;
+CAPS :[A-Z]+;
