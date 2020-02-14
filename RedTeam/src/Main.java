@@ -8,77 +8,36 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class Main {
-
     public static void main(String[] args) throws IOException {
 
         try {
-            CharStream cs = CharStreams.fromFileName("./inputs/fibonacci.micro");
-            littleLexer lexer = new littleLexer(cs);
-            CommonTokenStream tstream = new CommonTokenStream(lexer);
-            int tokens = tstream.getNumberOfOnChannelTokens();
-            System.out.println(tokens);
-            OutputStream os = new FileOutputStream((new File("./outputs/ourFibonnaci.out")));
-            String output = "";
-            for(int i = 0; i < tokens - 1; i++) {
-                System.out.println("Token Type: " + convertType(tstream.get(i).getType()));
-                System.out.println("Value: " + tstream.get(i).getText());
-                output += "Token Type: " + convertType(tstream.get(i).getType()) + "\n";
-                output += "Value: " + tstream.get(i).getText() + "\n";
+            for (int i = 0; i < args.length; i++) {
+                String inputFile = args[0];
+                CharStream cs = CharStreams.fromFileName(inputFile);
+                LITTLELexer lexer = new LITTLELexer(cs);
+                CommonTokenStream tstream = new CommonTokenStream(lexer);
+                int tokens = tstream.getNumberOfOnChannelTokens();
+                String[] splitFileName = inputFile.split("\\.");
+                splitFileName = splitFileName[0].concat(".out").split("/");
+                String outputFileName = splitFileName[splitFileName.length-1];
+                String outputPath = "../output";
+                OutputStream os = new FileOutputStream((new File(outputPath.concat(outputFileName))));
+                String output = "";
+                for (int j = 0; j < tokens - 1; j++) {
+                    System.out.println("Token Type: " + convertType(tstream.get(j).getType()));
+                    System.out.println("Value: " + tstream.get(j).getText());
+                    output += "Token Type: " + convertType(tstream.get(j).getType()) + "\n";
+                    output += "Value: " + tstream.get(j).getText() + "\n";
+                }
+                os.write(output.getBytes(), 0, output.length());
             }
-            os.write(output.getBytes(), 0, output.length());
-        } catch(IOException e) {System.out.println("File not found");}
-        try {
-            CharStream cs = CharStreams.fromFileName("./inputs/sqrt.micro");
-            littleLexer lexer = new littleLexer(cs);
-            CommonTokenStream tstream = new CommonTokenStream(lexer);
-            int tokens = tstream.getNumberOfOnChannelTokens();
-            System.out.println(tokens);
-            OutputStream os = new FileOutputStream((new File("./outputs/ourSqrt.out")));
-            String output = "";
-            for(int i = 0; i < tokens - 1; i++) {
-                System.out.println("Token Type: " + convertType(tstream.get(i).getType()));
-                System.out.println("Value: " + tstream.get(i).getText());
-                output += "Token Type: " + convertType(tstream.get(i).getType()) + "\n";
-                output += "Value: " + tstream.get(i).getText() + "\n";
-            }
-            os.write(output.getBytes(), 0, output.length());
-        } catch(IOException e) {System.out.println("File not found");}
-        try {
-            CharStream cs = CharStreams.fromFileName("./inputs/loop.micro");
-            littleLexer lexer = new littleLexer(cs);
-            CommonTokenStream tstream = new CommonTokenStream(lexer);
-            int tokens = tstream.getNumberOfOnChannelTokens();
-            System.out.println(tokens);
-            OutputStream os = new FileOutputStream((new File("./outputs/ourLoop.out")));
-            String output = "";
-            for(int i = 0; i < tokens - 1; i++) {
-                System.out.println("Token Type: " + convertType(tstream.get(i).getType()));
-                System.out.println("Value: " + tstream.get(i).getText());
-                output += "Token Type: " + convertType(tstream.get(i).getType()) + "\n";
-                output += "Value: " + tstream.get(i).getText() + "\n";
-            }
-            os.write(output.getBytes(), 0, output.length());
-        } catch(IOException e) {System.out.println("File not found");}
-        try {
-            CharStream cs = CharStreams.fromFileName("./inputs/nested.micro");
-            littleLexer lexer = new littleLexer(cs);
-            CommonTokenStream tstream = new CommonTokenStream(lexer);
-            int tokens = tstream.getNumberOfOnChannelTokens();
-            System.out.println(tokens);
-            OutputStream os = new FileOutputStream((new File("./outputs/ourNested.out")));
-            String output = "";
-            for(int i = 0; i < tokens - 1; i++) {
-                System.out.println("Token Type: " + convertType(tstream.get(i).getType()));
-                System.out.println("Value: " + tstream.get(i).getText());
-                output += "Token Type: " + convertType(tstream.get(i).getType()) + "\n";
-                output += "Value: " + tstream.get(i).getText() + "\n";
-            }
-            os.write(output.getBytes(), 0, output.length());
-        } catch(IOException e) {System.out.println("File not found");}
-    }
+        } catch (IOException e) {
+            System.out.println("File not found");
+        }
 
-    public static String convertType(int type){
-        switch(type){
+    }
+    public static String convertType ( int type){
+        switch (type) {
             case 1:
                 return "KEYWORD";
             case 3:
@@ -94,7 +53,7 @@ public class Main {
             case 8:
                 return "IDENTIFIER";
             default:
-                return "WHAT THE FUCK IS THIS?>?>?>";
+                return "If you see this, seek help";
         }
     }
 }

@@ -1,3 +1,8 @@
-# IntelliJ IDE
-.idea
-RedTeam.iml
+/.idea/
+RedTeam/src/LITTLELexer.class
+RedTeam/out/
+RedTeam/src/LITTLELexer.java
+RedTeam/src/LITTLELexer.interp
+RedTeam/src/LITTLELexer.tokens
+RedTeam/src/Main.class
+RedTeam/target/

@@ -1,6 +1,6 @@
 /* Define grammar called LITTLE */
 
-grammar little;
+grammar LITTLE;
 
 KEYWORD : ('PROGRAM' | 'BEGIN' | 'END' | 'FUNCTION' | 'WRITE' | 'IF' | 'ELSE' | 'ENDIF' | 'WHILE' | 'ENDWHILE' | 'CONTINUE' | 'BREAK' | 'RETURN' | 'INT' | 'VOID' | 'STRING' | 'FLOAT' | 'READ');
 
@@ -24,3 +24,5 @@ COMMENT : '--'(.)*?[\n] -> skip;
 
 // Identifier tokens
 IDENTIFIER : ([a-zA-Z])+([a-zA-Z0-9])*;
+
+
