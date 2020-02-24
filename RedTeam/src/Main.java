@@ -17,6 +17,10 @@ public class Main {
                 LITTLELexer lexer = new LITTLELexer(cs);
                 CommonTokenStream tstream = new CommonTokenStream(lexer);
                 int tokens = tstream.getNumberOfOnChannelTokens();
+
+                LITTLEParser parser = new LITTLEParser(tstream);
+                parser.program(inputFile);
+                
                 String[] splitFileName = inputFile.split("\\.");
                 splitFileName = splitFileName[0].concat(".out").split("/");
                 String outputFileName = splitFileName[splitFileName.length-1];
