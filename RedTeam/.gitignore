@@ -6,11 +6,5 @@ RedTeam/src/LITTLELexer.interp
 RedTeam/src/LITTLELexer.tokens
 RedTeam/src/Main.class
 RedTeam/target/
-/RedTeam/out/
 RedTeam/src/*.class
-/RedTeam/src/LITTLE.interp
-/RedTeam/src/LITTLE.tokens
-/RedTeam/src/LITTLEBaseListener.java
-/RedTeam/src/LITTLEListener.java
-/RedTeam/src/LITTLEParser.java
-/Exported Items.bib
+RedTeam/src/*.java
