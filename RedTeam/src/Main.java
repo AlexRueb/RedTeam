@@ -19,7 +19,7 @@ public class Main {
                 int tokens = tstream.getNumberOfOnChannelTokens();
 
                 LITTLEParser parser = new LITTLEParser(tstream);
-                parser.program(inputFile);
+                parser.program();
                 
                 String[] splitFileName = inputFile.split("\\.");
                 splitFileName = splitFileName[0].concat(".out").split("/");
