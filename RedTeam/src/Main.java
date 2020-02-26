@@ -1,6 +1,7 @@
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -13,14 +14,15 @@ public class Main {
         try {
             for (int i = 0; i < args.length; i++) {
                 String inputFile = args[0];
+                //String inputFile = "../inputs/fibonacci.micro";
                 CharStream cs = CharStreams.fromFileName(inputFile);
                 LITTLELexer lexer = new LITTLELexer(cs);
                 CommonTokenStream tstream = new CommonTokenStream(lexer);
                 int tokens = tstream.getNumberOfOnChannelTokens();
 
                 LITTLEParser parser = new LITTLEParser(tstream);
-                parser.program();
-                
+                ParseTree tree = parser.program();
+
                 String[] splitFileName = inputFile.split("\\.");
                 splitFileName = splitFileName[0].concat(".out").split("/");
                 String outputFileName = splitFileName[splitFileName.length-1];
