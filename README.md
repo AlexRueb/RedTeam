@@ -34,7 +34,7 @@ Will print "Accepted" or "Not accepted"
 
 **example** <code>./Micro.sh ../inputs/fibonacci.micro</code>
 
-### Command to tokenize and diff stdout against expected file
+### Command to parse and diff stdout against expected file
 <code>./diffTest path/to/file/\<FILENAME></code>
 
 **example** <code>./diffTest ../inputs/*.micro</code>
