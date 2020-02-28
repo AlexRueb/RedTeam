@@ -1,4 +1,11 @@
 import org.antlr.v4.runtime.*;
+
+/** Class to override the default automatic error recovery of ANTLR4
+ *  parser. Instead, errors will cause the program to bail. Copied from
+ *  "The Definitive ANTLR4 Reference, 2nd Edition," Section 9.5 pgs 172-174,
+ *  written by Dr. Terence Parr
+ *
+ */
 public class BailErrorStrategy extends DefaultErrorStrategy {
     /** Instead of recovering from exception e, rethrow it wrapped
      * in a generic RuntimeException so it is not caught by the
