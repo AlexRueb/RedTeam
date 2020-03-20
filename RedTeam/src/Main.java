@@ -1,6 +1,11 @@
-import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
+
 import java.io.IOException;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -15,7 +20,11 @@ public class Main {
 
                 parser.setErrorHandler(new BailErrorStrategy());
                 ParseTree tree = parser.program();
-
+                LittleListener l = new LittleListener();
+                ParseTreeWalker walker= new ParseTreeWalker();
+                Stack<SymbolTable> tables = new Stack<>();
+                walker.walk(l, tree);
+                //l.listener.printSymbolTable();
                 System.out.println("Accepted");
             }
         } catch (RuntimeException e) {
