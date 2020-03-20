@@ -24,7 +24,7 @@ public class Main {
                 ParseTreeWalker walker= new ParseTreeWalker();
                 Stack<SymbolTable> tables = new Stack<>();
                 walker.walk(l, tree);
-                //l.listener.printSymbolTable();
+                //l.printSymbolTable();
                 System.out.println("Accepted");
             }
         } catch (RuntimeException e) {
