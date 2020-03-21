@@ -20,7 +20,7 @@ STRING: 'STRING';
 FLOAT: 'FLOAT';
 READ: 'READ';
 
-KEYWORD : ( PROGRAM | BEGIN | END | FUNCTION | WRITE | IF | ELSE | ENDIF | WHILE | ENDWHILE | CONTINUE | BREAK | RETURN | INT | VOID | STRING | FLOAT | READ)+;
+KEYWORD : ( PROGRAM | BEGIN | END | FUNCTION | WRITE | IF | ELSE | ENDIF | WHILE | ENDWHILE | CONTINUE | BREAK | RETURN | INT | VOID | STRING | FLOAT | READ);
 
 // Spaces, return, tab, and new lines characters
 WS : [ \r\t\n]+ -> skip; // skip spaces, tabs, newlines
