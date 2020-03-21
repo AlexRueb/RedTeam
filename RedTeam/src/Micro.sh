@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 java -jar /usr/local/lib/antlr-4.8-complete.jar LITTLE.g4
 javac -d . ./*.java
 
