@@ -20,7 +20,7 @@ public class Main {
 
                 parser.setErrorHandler(new BailErrorStrategy());
                 ParseTree tree = parser.program();
-                LittleListener l = new LittleListener();
+                ListenerClass l = new ListenerClass();
                 ParseTreeWalker walker= new ParseTreeWalker();
                 Stack<SymbolTable> tables = new Stack<>();
                 walker.walk(l, tree);

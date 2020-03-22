@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-public class LittleListener extends LITTLEBaseListener {
+public class ListenerClass extends LITTLEBaseListener {
 
     Stack<SymbolTable> tables;
     int counter = 0;
@@ -8,7 +8,7 @@ public class LittleListener extends LITTLEBaseListener {
     //TODO: Implement all methods that would have their own scope
     //TODO: Create a stack of scopes
     // I don't think this is all of them.. I'm not sure.
-    public LittleListener(){
+    public ListenerClass(){
         tables = new Stack<SymbolTable>();
     }
 
