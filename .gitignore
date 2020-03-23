@@ -14,3 +14,6 @@ RedTeam/src/*.class
 /RedTeam/src/LITTLEListener.java
 /RedTeam/src/LITTLEParser.java
 /Exported Items.bib
+/*.iml
+/out/
+/target/
