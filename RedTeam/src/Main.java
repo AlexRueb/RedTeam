@@ -25,10 +25,10 @@ public class Main {
                 Stack<SymbolTable> tables = new Stack<>();
                 walker.walk(l, tree);
                 //l.printSymbolTable();
-                System.out.println("Accepted");
+                //System.out.println("Accepted");
             }
         } catch (RuntimeException e) {
-            System.out.println("Not accepted");
+            //System.out.println("Not accepted");
         }
     }
 }

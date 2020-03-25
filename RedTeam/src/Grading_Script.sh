@@ -1,6 +1,6 @@
 #!/bin/sh
 
-INPUTS=(inputs/*)
+INPUTS=inputs/*
 mkdir usertest
 for i in $INPUTS
 	do
