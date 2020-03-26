@@ -118,7 +118,8 @@ public class ListenerClass extends LITTLEBaseListener {
         while(!tables.empty()){
             Stack<String> tempStack2 = new Stack<>();
             SymbolTable temp = tables.pop();
-            temp.values.forEach((k,v)-> tempStack2.push("name "+k+" "+v));
+            temp.values.forEach((k, v) ->
+                    tempStack2.push("name "+k+" "+v));
 
             while(!tempStack2.empty()){
                 tempStack.push(tempStack2.pop());

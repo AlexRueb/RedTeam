@@ -5,7 +5,6 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.IOException;
-import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -22,13 +21,11 @@ public class Main {
                 ParseTree tree = parser.program();
                 ListenerClass l = new ListenerClass();
                 ParseTreeWalker walker= new ParseTreeWalker();
-                Stack<SymbolTable> tables = new Stack<>();
                 walker.walk(l, tree);
-                //l.printSymbolTable();
-                //System.out.println("Accepted");
+                l.printSymbolTables();
             }
         } catch (RuntimeException e) {
-            //System.out.println("Not accepted");
+            System.out.println(e.toString());
         }
     }
 }

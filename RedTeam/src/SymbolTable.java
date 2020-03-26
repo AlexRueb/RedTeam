@@ -5,12 +5,11 @@ public class SymbolTable {
     public LinkedHashMap<String, String> values;
 
     public SymbolTable(String name){
+
         this.name = name;
+        this.values = new LinkedHashMap<>();
     }
 
-    public LinkedHashMap getSymbolTable(){
-        return values;
-    }
 
     public String getName(){
         return name;
