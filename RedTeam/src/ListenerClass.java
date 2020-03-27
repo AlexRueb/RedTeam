@@ -2,12 +2,6 @@ import java.util.Stack;
 
 public class ListenerClass extends LITTLEBaseListener {
 
-    //Stack<SymbolTable> tables;
-    //int counter = 0;
-
-    //LinkedHashMap<String,String> currentSymbolTable;
-    //Stack<LinkedHashMap<String,String>> symbolTables;
-    //Stack<String> symbolTableNames;
     int blockNum;
     SymbolTable current;
     Stack<SymbolTable> tables;
@@ -17,53 +11,46 @@ public class ListenerClass extends LITTLEBaseListener {
         blockNum = 1;
     }
 
-    //TODO: Implement all methods that would have their own scope
-    //TODO: Create a stack of scopes
-
     @Override
     public void enterPgm_body(LITTLEParser.Pgm_bodyContext ctx){
-        // Create symbol table
         createSymbolTable("GLOBAL");
     }
 
     @Override
     public void enterIf_stmt(LITTLEParser.If_stmtContext ctx){
-        // Create symbol table
-        createBlockSymbolTable();
+        createNewSymbolTable();
     }
 
     @Override
     public void enterFunc_decl(LITTLEParser.Func_declContext ctx){
-        // Create symbol table
         createSymbolTable(ctx.id().getText());
     }
 
     @Override
     public void enterElse_part(LITTLEParser.Else_partContext ctx){
         if(ctx.decl() != null){
-            createBlockSymbolTable();
+            createNewSymbolTable();
         }
     }
 
     @Override
     public void enterWhile_stmt(LITTLEParser.While_stmtContext ctx){
-        // Create symbol table
-        createBlockSymbolTable();
+        createNewSymbolTable();
     }
 
     @Override
     public void enterString_decl(LITTLEParser.String_declContext ctx){
-        insertSymbolTableStr(ctx.id().getText(), ctx.children.get(0).getText(), ctx.str().getText());
+        insertStr(ctx.id().getText(), ctx.children.get(0).getText(), ctx.str().getText());
     }
 
     @Override
     public void enterVar_decl(LITTLEParser.Var_declContext ctx){
         String varType = ctx.var_type().getText();
-        insertSymbolTableVar(ctx.id_list().id().getText(), varType);
-        LITTLEParser.Id_tailContext idlctx = ctx.id_list().id_tail();
-        while(idlctx.id() != null){
-            insertSymbolTableVar(idlctx.id().getText(), varType);
-            idlctx = idlctx.id_tail();
+        insertVar(ctx.id_list().id().getText(), varType);
+        LITTLEParser.Id_tailContext tailCtx = ctx.id_list().id_tail();
+        while(tailCtx.id() != null){
+            insertVar(tailCtx.id().getText(), varType);
+            tailCtx = tailCtx.id_tail();
         }
     }
 
@@ -72,32 +59,32 @@ public class ListenerClass extends LITTLEBaseListener {
         if(ctx.param_decl() != null) {
             String varType = ctx.param_decl().var_type().getText();
             String name = ctx.param_decl().id().getText();
-            insertSymbolTableVar(name, varType);
-            LITTLEParser.Param_decl_tailContext pdtctx = ctx.param_decl_tail();
-            while (pdtctx.param_decl() != null) {
-                varType = pdtctx.param_decl().var_type().getText();
-                name = pdtctx.param_decl().id().getText();
-                insertSymbolTableVar(name, varType);
-                pdtctx = pdtctx.param_decl_tail();
+            insertVar(name, varType);
+            LITTLEParser.Param_decl_tailContext tailCtx = ctx.param_decl_tail();
+            while (tailCtx.param_decl() != null) {
+                varType = tailCtx.param_decl().var_type().getText();
+                name = tailCtx.param_decl().id().getText();
+                insertVar(name, varType);
+                tailCtx = tailCtx.param_decl_tail();
             }
         }
     }
 
-    private void insertSymbolTableVar(String name, String type){
+    private void insertVar(String name, String type){
         if(current.values.containsKey(name)){
-            System.out.println("DECLARATION ERROR "+name);
+            System.out.println("DECLARATION ERROR " + name);
             System.exit(-1);
         } else {
-            current.values.put(name, "type "+type);
+            current.values.put(name, "type " + type);
         }
     }
 
-    private void insertSymbolTableStr(String name, String type, String val){
+    private void insertStr(String name, String type, String val){
         if(current.values.containsKey(name)){
-            System.out.println("DECLARATION ERROR "+name);
+            System.out.println("DECLARATION ERROR " + name);
             System.exit(-1);
         } else {
-            current.values.put(name, "type "+type+" value "+val);
+            current.values.put(name, "type " + type + " value " + val);
         }
     }
 
@@ -106,11 +93,11 @@ public class ListenerClass extends LITTLEBaseListener {
         current = tables.peek();
     }
 
-    private void createBlockSymbolTable(){
+    private void createNewSymbolTable(){
         // Push new symbol table on stack
-        String name = "BLOCK "+this.blockNum;
+        String name = "BLOCK " + blockNum;
         createSymbolTable(name);
-        this.blockNum++;
+        blockNum++;
     }
 
     public void printSymbolTables(){
@@ -119,7 +106,7 @@ public class ListenerClass extends LITTLEBaseListener {
             Stack<String> tempStack2 = new Stack<>();
             SymbolTable temp = tables.pop();
             temp.values.forEach((k, v) ->
-                    tempStack2.push("name "+k+" "+v));
+                    tempStack2.push("name " + k + " " + v));
 
             while(!tempStack2.empty()){
                 tempStack.push(tempStack2.pop());
