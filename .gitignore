@@ -7,3 +7,4 @@ RedTeam/src/LITTLELexer.tokens
 RedTeam/src/Main.class
 RedTeam/target/
 /*.iml
+RedTeam/src/*.class
