@@ -44,6 +44,16 @@ public class ListenerClass extends LITTLEBaseListener {
     }
 
     @Override
+    public void enterAssign_expr(LITTLEParser.Assign_exprContext ctx) {
+
+    }
+
+    @Override
+    public void enterId(LITTLEParser.IdContext ctx) {
+
+    }
+
+    @Override
     public void enterVar_decl(LITTLEParser.Var_declContext ctx){
         String varType = ctx.var_type().getText();
         insertVar(ctx.id_list().id().getText(), varType);
@@ -52,6 +62,7 @@ public class ListenerClass extends LITTLEBaseListener {
             insertVar(tailCtx.id().getText(), varType);
             tailCtx = tailCtx.id_tail();
         }
+
     }
 
     @Override
